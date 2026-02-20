@@ -1,0 +1,171 @@
+<!DOCTYPE html> <!-- Define que o documento é HTML5 -->
+<html lang="en"> <!-- Início do HTML -->
+
+<head>
+    <meta charset="UTF-8"> <!-- Permite acentos -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsivo -->
+    <title>Calculadora</title> <!-- Título da aba -->
+
+    <style>
+        /* Remove margens e espaçamentos padrão */
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Fundo da tela */
+        .fundo{
+            background-image: linear-gradient(45deg,black, crimson); /* Fundo degradê */
+            height: 100vh; /* Ocupa toda altura da tela */
+            color: #fff; /* Cor do texto branca */
+            font-family: Arial, Helvetica, sans-serif; /* Fonte */
+            text-align: center; /* Centraliza texto */
+        }
+
+        /* Caixa da calculadora */
+        .calculadora{
+            position: absolute; /* Permite posicionar livremente */
+            background-color: rgba(0, 0, 0, 0.8); /* Fundo escuro transparente */
+            top: 50%; /* Desce 50% da tela */
+            left: 50%; /* Vai 50% para direita */
+            transform: translate(-50%,-50%); /* Centraliza perfeitamente */
+            border-radius: 15px; /* Bordas arredondadas */
+            padding: 15px; /* Espaço interno */
+        }
+
+        /* Estilo dos botões */
+        .botao{
+            width: 50px; /* Largura */
+            height: 50px; /* Altura */
+            font-size: 25px; /* Tamanho do número */
+            cursor: pointer; /* Muda cursor ao passar mouse */
+            margin: 3px; /* Espaço entre botões */
+            background-color: rgb(31,31,31); /* Cor botão */
+            border: none; /* Remove borda */
+            color: #fff; /* Texto branco */
+        }
+
+        /* Efeito ao passar mouse */
+        .botao:hover{
+            background-color: black;
+        }
+
+        /* Visor onde aparece o resultado */
+        #resultado{
+            background-color: white; /* Fundo branco */
+            width: 207px; /* Largura */
+            height: 30px; /* Altura */
+            margin: 5px; /* Espaço externo */
+            font-size: 25px; /* Tamanho texto */
+            color: black; /* Texto preto */
+            text-align: right; /* Número vai pra direita */
+            padding: 5px; /* Espaço interno */
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Container principal -->
+    <div class="fundo">
+
+        <h1>Lislanny Silva</h1> <!-- Título -->
+
+        <div class="calculadora"> <!-- Caixa da calculadora -->
+
+            <h1>Calculadora</h1>
+
+            <p id="resultado"></p> <!-- Visor -->
+
+            <table> <!-- Tabela para organizar botões -->
+
+                <!-- Primeira linha -->
+                <tr>
+                    <td><button class="botao" onclick="clean()">C</button></td> <!-- Limpa tudo -->
+                    <td><button class="botao" onclick="back()"><</button></td> <!-- Apaga último número -->
+                    <td><button class="botao" onclick="insert('/')">/</button></td> <!-- Divisão -->
+                    <td><button class="botao" onclick="insert('*')">X</button></td> <!-- Multiplicação -->
+                </tr>
+
+                <!-- Segunda linha -->
+                <tr>
+                    <td><button class="botao" onclick="insert('7')">7</button></td>
+                    <td><button class="botao" onclick="insert('8')">8</button></td>
+                    <td><button class="botao" onclick="insert('9')">9</button></td>
+                    <td><button class="botao" onclick="insert('-')">-</button></td>
+                </tr>
+
+                <!-- Terceira linha -->
+                <tr>
+                    <td><button class="botao" onclick="insert('4')">4</button></td>
+                    <td><button class="botao" onclick="insert('5')">5</button></td>
+                    <td><button class="botao" onclick="insert('6')">6</button></td>
+                    <td><button class="botao" onclick="insert('+')">+</button></td>
+                </tr>
+
+                <!-- Quarta linha -->
+                <tr>
+                    <td><button class="botao" onclick="insert('1')">1</button></td>
+                    <td><button class="botao" onclick="insert('2')">2</button></td>
+                    <td><button class="botao" onclick="insert('3')">3</button></td>
+                    <td rowspan="2">
+                        <button class="botao" style="height: 106px;" onclick="calcular()">=</button>
+                    </td>
+                </tr>
+
+                <!-- Quinta linha -->
+                <tr>
+                    <td colspan="2">
+                        <button class="botao" style="width: 106px;" onclick="insert('0')">0</button>
+                    </td>
+                    <td><button class="botao" onclick="insert('.')">.</button></td>
+                </tr>
+
+            </table>
+        </div>
+    </div>
+
+    <script>
+
+        // Função para inserir números no visor
+        function insert(num)
+        {
+            var numero = document.getElementById('resultado').innerHTML; 
+            document.getElementById('resultado').innerHTML = numero + num; 
+        }
+
+        // Limpa tudo
+        function clean()
+        {
+            document.getElementById('resultado').innerHTML = "";
+        }
+
+        // Apaga último caractere
+        function back()
+        {
+            var resultado = document.getElementById('resultado').innerHTML;
+            document.getElementById('resultado').innerHTML = resultado.substring(0, resultado.length -1);
+        }
+
+        // Faz o cálculo
+        function calcular()
+        {
+            var resultado = document.getElementById('resultado').innerHTML;
+
+            if(resultado) // Se existir algo no visor
+            {
+                document.getElementById('resultado').innerHTML = eval(resultado);
+            }
+            else
+            {
+                document.getElementById('resultado').innerHTML = "Nada..."
+            }
+        }
+
+    </script>
+
+</body>
+</html>
+    </script>
+</body>
+</html>
